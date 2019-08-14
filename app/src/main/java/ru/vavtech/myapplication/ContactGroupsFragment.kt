@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
+import kotlinx.android.synthetic.main.contact_groups_fragment.*
 
 class ContactGroupsFragment : Fragment() {
 
@@ -22,5 +24,9 @@ class ContactGroupsFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(ContactGroupsViewModel::class.java)
+        recycler.layoutManager = LinearLayoutManager(context)
+        val items = viewModel.getContactGroups()
+        recycler.adapter = ContactGroupsAdapter(items, context!!)
+
     }
 }
